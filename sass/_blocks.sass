@@ -280,9 +280,6 @@
 			+max-screen($mq_sm)
 				padding-left: 0
 
-
-
-
 	&__body
 		padding-top: 64px
 		padding-bottom: 60px
@@ -298,7 +295,12 @@
 	&__button
 		text-align: center
 
-
+	&__message
+		color: #00576F
+		text-transform: uppercase
+		+rem(font-size, 18px)
+		font-weight: bold
+		text-align: center
 
 /* feedback
 /* ---------------------------------------END--- */
@@ -390,37 +392,46 @@
 	position: relative
 
 	&__body
-		transition: opacity 1s ease-out, margin-top .5s ease-out
+		transition: opacity 1s ease-out, margin-bottom .5s ease-out
 		+transition-delay(.1s)
 		+opacity(0)
-		top: 20px
 		position: absolute
 		bottom: 100%
-		margin-left: 19px
-		white-space: nowrap
-		margin-top: 17px
+		margin-bottom: 40px
+		right: 0
+		left: 0
+		text-align: center
 		height: 34px
 		line-height: 34px
 		background: $color_imp
-		padding: 0 14px
-
+		padding: 14px
+		+max-screen($mq_sm)
+			position: relative
+			bottom: 0
+			margin-bottom: 0
+			display: none
 
 		&:before
 			content: ''
 			display: block
 			position: absolute
-			top: 50%
-			margin-top: -6.5px
+			left: 50%
+			margin-left: -7px
 			right: 100%
+			top: 100%
 			width: 0
 			height: 0
 			border-style: solid
-			border-width: 6.5px 6px 6.5px 0
-			border-color: transparent $color_imp transparent transparent
+			border-width: 14px 14px 0 14px
+			border-color: $color_imp transparent transparent transparent
+			+max-screen($mq_sm)
+				display: none
 
 	&_showed &__body
-		margin-top: -17px
+		margin-bottom: 20px
 		+opacity(1)
+		+max-screen($mq_sm)
+			display: block
 
 	&_showed
 		input
