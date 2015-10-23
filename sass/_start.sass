@@ -1,0 +1,189 @@
+html
+	@include rem-baseline
+
+body
+	background: #fff
+	color: $text_color
+	+rem(font-size, 15px)
+	line-height: 1.6
+	font-family: $font_main
+
+
+p
+	margin: 0 0 $content_bot_space 0
+
+ul
+	margin: 0 0 $content_bot_space -20px
+
+ol
+	margin: 0 0 $content_bot_space -20px
+
+ul li,
+ol li
+	margin-bottom: 8px
+
+.list-bullet
+	margin: 0 0 $content_bot_space 0
+	padding: 0
+
+	li 
+		position: relative
+		display: block
+		padding: 0 0 0 18px
+		margin-bottom: 16px
+		list-style-type: none
+
+		&:before
+			content: ''
+			display: block
+			position: absolute
+			top: 8px
+			left: 0
+			width: 5px
+			height: 5px
+			background: $main_color
+			border-radius: 3px
+
+.list-dash
+	margin: 0 0 $content_bot_space 20px
+	padding: 0
+
+	li 
+		position: relative
+		display: block
+		padding: 0 0 0 18px
+		margin-bottom: 11px
+		list-style-type: none
+		color: $text_color_light
+
+		&:before
+			content: ''
+			display: block
+			position: absolute
+			top: 11px
+			left: 0
+			width: 13px
+			height: 1px
+			background: $text_color_light
+
+.list-checked
+	margin: 0 0 $content_bot_space -5px
+	padding: 0
+
+	li 
+		position: relative
+		display: block
+		padding: 0 0 0 18px
+		margin-bottom: 11px
+		list-style-type: none
+		color: $text_color_light
+
+		&:before
+			content: ''
+			display: block
+			position: absolute
+			top: 7px
+			left: 0
+			+sprite-icon("checked")
+
+
+/*  Headers
+/*  -------------------------------------------- */
+
+#{headings(1, 6)}
+	margin: 65px 0 48px 0
+	padding: 0
+	line-height: 1.2
+	font-weight: bold
+	text-transform: uppercase
+
+#{headings(1, 1)}
+	+rem(font-size, 40px)
+
+#{headings(2, 2)}
+	+rem(font-size, 30px)
+
+#{headings(3, 6)}
+	+rem(font-size, 25px)
+
+
+/* Headers
+/* ---------------------------------------END--- */
+
+
+/* fonts
+/* --------------------------------------------- */
+
++font-face( $family: "PT Sans", $file_name_r: "PTS55F_W", $file_name_i: "PTS56F_W", $file_name_b: "PTS75F_W", $file_name_bi: "PTS76F_W")
+
+%font-r
+	font-family: $font_main
+
+.font-r
+	@extend %font-r
+
+
+
+/* fonts
+/* ---------------------------------------END--- */
+
+
+/* Links
+/* --------------------------------------------- */
+
+a, .u
+	text-decoration: none
+	border-bottom-width: 1px
+	border-bottom-style: solid
+	outline: none !important
+	+link-color ($color: $link_color, $color_hover: $link_color_hover, $color_visited: $link_color_visited, $animation-time: $link_animation-time)
+
+	&:focus
+		outline: thin dotted
+
+
+.dashed,
+.dotted
+	cursor: pointer
+
+
+.dashed
+	border-bottom-style: dashed
+
+.dotted
+	border-bottom-style: dotted
+
+/* Links
+/* -------------------------------------END----- */
+
+::-moz-selection
+	background: $selection_bg
+	text-shadow: none
+
+::selection
+	background: $selection_bg
+	text-shadow: none
+
+hr
+	display: block
+	margin: 1em 0
+	padding: 0
+	height: 1px
+	border: 0
+	border-top: 1px solid #ccc
+
+textarea
+	resize: vertical
+
+::-webkit-input-placeholder
+	color: $placeholder_color
+	text-transform: uppercase
+	
+
+::-moz-placeholder
+	color: $placeholder_color
+	text-transform: uppercase
+
+input:-ms-input-placeholder
+	color: $placeholder_color
+	text-transform: uppercase
