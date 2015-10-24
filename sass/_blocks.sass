@@ -55,7 +55,7 @@
 .page
 	padding-top: $header_h
 	position: relative
-	+max-screen($mq_sm)
+	+max-screen($mq_m_menu)
 		padding-top: $header_h_sm
 
 	&__header
@@ -84,8 +84,12 @@
 	top: 0
 	z-index: 200
 	background: #fff
-	+box-shadow(0 0 15px rgba(#000, .6))
-	+max-screen($mq_sm)
+	+transition-duration(.3s)
+	+transition-property(box-shadow)
+	&.is-scrolled
+		+box-shadow(0 0 15px rgba(#000, .6))
+
+	+max-screen($mq_m_menu)
 		height: $header_h_sm
 
 	&__body
@@ -569,6 +573,8 @@
 	position: absolute
 	top: 37px
 	left: $page_space
+	+max-screen($mq_m_menu)
+		top: 10px
 	+max-screen($mq_sm)
 		width: 180px
 		top: 14px
@@ -710,6 +716,7 @@
 	cursor: pointer
 	+max-screen($mq_m_menu)
 		display: block
+		top: 7px
 	+max-screen($mq_sm)
 		top: 7px
 		right: $page_space_sm
@@ -720,6 +727,8 @@
 		top: 34px
 		right: $page_space
 		z-index: 100
+		+max-screen($mq_m_menu)
+			top: 7px
 		+max-screen($mq_sm)
 			top: 7px
 			right: $page_space_sm
@@ -781,7 +790,7 @@
 	+max-screen($mq_m_menu)
 		right: auto
 		left: 280px
-		top: 34px
+		top: 7px
 		&.is-open
 			color: #fff
 
@@ -1250,3 +1259,105 @@
 /* teasers
 /* ---------------------------------------END--- */
 
+
+/* support
+/* --------------------------------------------- */
+
+.support
+	@extend %clear
+	margin-bottom: 76px
+	+max-screen($mq_sm_support)
+		margin-bottom: 30px
+
+	&__i
+		display: block
+		float: left
+		width: (100%/3)
+		@extend %bszbb
+		padding: 0 30px
+		+max-screen($mq_sm_support)
+			float: none
+			width: 100%
+			margin-bottom: 30px
+
+	
+	&__lst
+		margin-left: -19px
+		+max-screen($mq_sm_support)
+			margin-left: 0
+		li
+			+max-screen($mq_sm_support)
+			display: inline
+			margin-left: 10px
+			&:first-child
+				padding-left: 0
+				margin-left: 0
+				&:before
+					display: none
+
+	&__lst,
+	&__description
+		margin-bottom: 14px
+
+	&__h
+		+rem(font-size, 18px)
+		text-transform: uppercase
+		margin-bottom: 18px
+		+max-screen($mq_sm_support)
+			text-align: center
+
+	&__price-num
+		font-weight: bold
+
+	&__graph
+		width: 155px
+		height: 155px
+		position: relative
+		margin: auto
+		margin-bottom: 40px
+		+max-screen($mq_sm_support)
+			margin-bottom: 15px
+
+		&:before
+			content: ''
+			display: block
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
+			background: $color_imp
+			border-radius: 50%
+		
+	&__icon
+		position: absolute
+		top: 50%
+		left: 50%
+
+		&_support
+			$icon_w: 175px
+			$icon_h: 105px
+			width: $icon_w
+			height: $icon_h
+			margin-left: - $icon_w/2
+			margin-top: - $icon_h/2
+
+		&_inf
+			$icon_w: 130px
+			$icon_h: 120px
+			width: $icon_w
+			height: $icon_h
+			margin-left: - $icon_w/2
+			margin-top: - $icon_h/2
+
+		&_copywriting
+			$icon_w: 167px
+			$icon_h: 137px
+			width: $icon_w
+			height: $icon_h
+			top: 0
+			left: 15px
+
+
+/* support
+/* ---------------------------------------END--- */

@@ -7,6 +7,7 @@ $(function() {
 	goToElement ();
 	setMenuActive ();
 	validateForm ();
+	detectIfScroll();
 
 	$('.js-slider').bxSlider({
 		mode: 'fade',
@@ -23,8 +24,31 @@ $(function() {
 	// инициализация плагина для адаптивных таблиц
 	$('.table_responsive').cardtable();
 
+
+	window.onscroll = function() {
+
+		detectIfScroll();
+	
+	};
+
 });
 
+
+function detectIfScroll () {
+	
+	var scrollFromTop = $(window).scrollTop();
+	var targetBlock = $('.header');
+	var scrolledState = 'is-scrolled';
+
+	if (scrollFromTop > 0) {
+
+		targetBlock.addClass( scrolledState );
+	} else	{
+
+		targetBlock.removeClass( scrolledState );
+	}
+
+} // detectIfScroll
 
 
 function animateNavigation () {
@@ -84,7 +108,7 @@ function goToElement () {
 
 
 	    $('html, body').animate({
-	        scrollTop: target.offset().top
+	        scrollTop: target.offset().top - 140
 	        
 	    }, speed, 'easeInOutCubic');
 	});
