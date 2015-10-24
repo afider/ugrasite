@@ -5,7 +5,7 @@ $(function() {
 
 	animateNavigation ();
 	goToElement ();
-	setMenuActive ();
+	//setMenuActive ();
 	validateForm ();
 	detectIfScroll();
 
@@ -39,6 +39,18 @@ function detectIfScroll () {
 	var scrollFromTop = $(window).scrollTop();
 	var targetBlock = $('.header');
 	var scrolledState = 'is-scrolled';
+	var menuItems = $('.main-nav__i');
+	var activeState = 'is-active';
+
+	var posOfAbout = $('.page').offset().top - 150;
+	var posOfPromo = $('.promo').offset().top - 150;
+	var posOfPortfolio = $('#portfolio').offset().top - 150;
+	var posOfFeedback = $('#feedback').offset().top - 150;
+
+	var wH = $(window).height();
+	var docH = $(document).height();
+
+
 
 	if (scrollFromTop > 0) {
 
@@ -47,6 +59,39 @@ function detectIfScroll () {
 
 		targetBlock.removeClass( scrolledState );
 	}
+
+
+	if (scrollFromTop > posOfAbout) {
+
+		menuItems.removeClass( activeState );
+		menuItems.eq(0).addClass( activeState );
+		
+	}
+
+	if (scrollFromTop > posOfPromo) {
+
+		menuItems.removeClass( activeState );
+		menuItems.eq(1).addClass( activeState );
+		
+	}
+
+
+	if (scrollFromTop > posOfPortfolio) {
+
+		menuItems.removeClass( activeState );
+		menuItems.eq(2).addClass( activeState );
+		
+	}
+
+	console.log(scrollFromTop + wH, docH)
+	if (scrollFromTop > posOfFeedback || scrollFromTop + wH == docH) {
+
+		menuItems.removeClass( activeState );
+		menuItems.eq(3).addClass( activeState );
+		
+	}
+
+
 
 } // detectIfScroll
 
@@ -107,7 +152,7 @@ function goToElement () {
 		 e.preventDefault();
 
 
-	    $('html, body').animate({
+	    $('html, body').stop().animate({
 	        scrollTop: target.offset().top - 140
 	        
 	    }, speed, 'easeInOutCubic');
