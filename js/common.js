@@ -6,6 +6,7 @@ $(function() {
 	animateNavigation ();
 	goToElement ();
 	setMenuActive ();
+	validateForm ();
 
 	$('.js-slider').bxSlider({
 		mode: 'fade',
@@ -18,6 +19,9 @@ $(function() {
 		autoHover: true
 
 	});
+
+	// инициализация плагина для адаптивных таблиц
+	$('.table_responsive').cardtable();
 
 });
 
@@ -105,3 +109,61 @@ function setMenuActive () {
 	
 
 } // setMenuActive
+
+
+
+function validateForm () {
+	
+	var inputForValidate = $(".js-feedback__input");
+	var errorState = 'tooltip_showed';
+	var submitButton = $('.js-feedback__submit');
+	var emptyState = 'is-empty';
+	var hiddenState = 'is-hidden';
+	var message = $(".js-feedback__message");
+
+
+	inputForValidate.on('keyup', function() {
+		var self = $(this);
+		var error = self.parent();
+
+		if ( self.val() === '' ) {
+
+			self.addClass(emptyState);
+		} else {
+
+			self.removeClass(emptyState);
+			error.removeClass(errorState);
+		}
+		
+	});
+
+
+	submitButton.on('click', function(event) {
+		var self = $(this);
+
+		inputForValidate.each(function() {
+			var self = $(this);
+			var error = self.parent();
+
+			if ( self.hasClass(emptyState) ) {
+
+				event.preventDefault();
+				error.addClass(errorState);
+				self.focus();
+				event.preventDefault();
+			} 
+
+		});
+
+		if ( !inputForValidate.hasClass(emptyState) ) {
+
+			event.preventDefault();
+			self.addClass(hiddenState);
+			message.removeClass(hiddenState);
+		} 
+		
+		
+		
+	});
+
+} // validateForm

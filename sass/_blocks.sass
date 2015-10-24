@@ -63,6 +63,7 @@
 
 	&__body
 		@extend %center
+		@extend %space
 
 	&__footer
 		position: relative
@@ -240,7 +241,7 @@
 /* --------------------------------------------- */
 
 .feedback
-	background: #6bc1d8 url("../img/radial-gradient.jpg") center center no-repeat
+	background: #6bc1d8 url("../img/radial-gradient.png") center center no-repeat
 	@extend %bszbb
 	color: #fff
 	
@@ -292,15 +293,49 @@
 			padding-top: 30px
 			padding-bottom: 30px
 
-	&__button
+	&__acts
 		text-align: center
+		position: relative
+
+	&__button
+		+transition-duration($animation-time)
+		+transition-property(visibility, opacity)
+		visibility: visible
+		+opacity(1)
+		+max-screen($mq_smr)
+			display: block
+		&.is-hidden
+			+transition-duration($animation-time)
+			+transition-property(visibility, opacity)
+			visibility: hidden
+			+opacity(0)
+			+max-screen($mq_smr)
+				display: none
 
 	&__message
+		position: absolute
+		right: 0
+		left: 0
+		top: 24px
 		color: #00576F
 		text-transform: uppercase
 		+rem(font-size, 18px)
 		font-weight: bold
 		text-align: center
+		+transition-duration($animation-time)
+		+transition-property(visibility, opacity)
+		visibility: visible
+		+max-screen($mq_smr)
+			top: 0
+			display: block
+			position: relative
+		&.is-hidden
+			+transition-duration($animation-time)
+			+transition-property(visibility, opacity)
+			visibility: hidden
+			+opacity(0)
+			+max-screen($mq_smr)
+				display: none
 
 /* feedback
 /* ---------------------------------------END--- */
@@ -376,11 +411,74 @@
 .separator
 	height: 13px
 	margin-bottom: 38px
+	background: url("../img/separator.png") center 0 no-repeat
 
 	&_light
 		background: url("../img/separator_light.png") center 0 no-repeat
 
 /* separator
+/* ---------------------------------------END--- */
+
+
+/* promo
+/* --------------------------------------------- */
+
+.promo
+	margin-bottom: 58px
+	&__message
+		+rem(font-size, 28px)
+		text-transform: uppercase
+		margin-bottom: 28px
+		+max-screen($mq_sm)
+			+rem(font-size, 20px)
+
+/* promo
+/* ---------------------------------------END--- */
+
+
+/* kinds
+/* --------------------------------------------- */
+
+.kinds
+	@extend %clear
+	margin-bottom: 43px
+
+	&__i
+		@extend %bszbb
+		text-align: center
+		
+		+min-screen($mq_sm + 1)
+			float: left
+			width: 50%
+			&:first-child
+				padding-right: $page_space
+			&:last-child
+				padding-left: $page_space
+		+max-screen($mq_sm)
+			&:first-child
+				margin-bottom: 43px
+
+	&__h
+		+rem(font-size, 24px)
+		text-transform: uppercase
+		font-weight: bold
+
+		&:after
+			content: ''
+			display: block
+			position: relative
+			width: 80px
+			margin: auto
+			height: 3px
+			background: $color_imp
+			margin-top: 25px
+			margin-bottom: 25px
+
+	&__i_company &__h:after
+		background: $main_color
+		
+
+/* kinds
 /* ---------------------------------------END--- */
 
 
@@ -718,31 +816,135 @@
 /* --------------------------------------------- */
 
 .table 
-	margin-bottom: 20px
+	
 	width: 100%
-	border: 2px solid #e9ecee
+	border: none
+	max-width: 908px
+	margin: auto
+	margin-bottom: 68px
+
+	&_space-bottom_less
+		margin-bottom: 30px
+
+	&.small-only
+		display: none
+		+max-screen($mq_sm)
+			display: table
+
+	&.large-only
+		+max-screen($mq_sm)
+			display: none
+
+	&.small-only
+		border: 1px solid #dfdfdf
+		margin-bottom: 20px
+		&:first-child
+			display: none
+		&:last-child
+			margin-bottom: 30px
 
 	&__h td,
-	& th 
-		font-size: 13px
+	th,
+	thead th
+		text-transform: uppercase
 		font-weight: bold
-		color: #888
-		background: #e9ecee
+		border-bottom: none
+		text-align: left
+		text-align: center
+
+		&:first-child
+			text-align: left
 
 	& th,
 	& td
-		padding: 10px 14px
-		border-bottom: 1px solid #e9ecee
+		vertical-align: middle
+		padding: 13px 0
+		border-bottom: 1px dashed #dfdfdf
 
-	&__line
-		background: #f6f6f6
-
+	&.small-only th,
+	&.small-only td
+		padding-left: 10px
+		padding-right: 10px
+		text-align: left
 	
+
+	.st-key
+		width: 40%
+
+	.st-val
+		width: 60%
+
+	&.small-only
+		tr
+			&:first-child
+				td
+					font-weight: bold
+
+	&__separator
+		td
+			padding: 16px 0
+			background: url("../img/separator_big.png") center center no-repeat
+			border-bottom: none
+		&_color-main
+			td
+				background: url("../img/separator_big_color-main.png") center center no-repeat
+
+			
+			
+
+	tr
+		&:last-child
+			td
+				border-bottom: none
+
+
+	&_second-td-bold
+		tr
+			td
+				&:last-child
+					font-weight: bold
+				
+		
+
+
 /* table
 /* ---------------------------------------END--- */
 
 
+/* h-sub-mess
+/* --------------------------------------------- */
 
+.h-sub-mess
+	max-width: 670px
+	margin-left: auto
+	margin-right: auto
+
+/* h-sub-mess
+/* ---------------------------------------END--- */
+
+
+/* attention-mark
+/* --------------------------------------------- */
+
+.attention-mark
+	color: $color_imp
+
+/* attention-mark
+/* ---------------------------------------END--- */
+
+
+/* yes-mark
+/* --------------------------------------------- */
+
+.yes-mark
+	display: inline-block
+	vertical-align: middle
+	width: 22px
+	height: 22px
+	color: $color_imp
+
+/* yes-mark
+/* ---------------------------------------END--- */
 
 
 
@@ -769,6 +971,7 @@
 	margin-bottom: 22px
 	max-width: $page_w_max2
 	margin: auto
+	margin-bottom: 96px
 
 	&__lst
 		margin: 0
@@ -888,5 +1091,162 @@
 /* ---------------------------------------END--- */
 
 
+/* legend
+/* --------------------------------------------- */
 
+.legend
+	margin-bottom: 65px
+	color: $text_color_light
+	font-style: italic
+	+rem(font-size, 13px)
+
+/* legend
+/* ---------------------------------------END--- */
+
+
+/* teasers
+/* --------------------------------------------- */
+
+.teasers
+	$teaser_dim: 197px
+	max-width: 920px
+	margin-left: auto
+	margin-right: auto
+
+	&__lst
+		margin: 0
+		padding: 0
+		list-style-type: none
+		
+	&__i
+		margin: 0 0 57px 0
+		padding: 0
+		width: (100%/3 - 1%)
+		display: inline-block
+		vertical-align: top
+		+max-screen($mq_sm_teasers)
+			width: (100%/2 - 1%)
+		+max-screen($mq_smr)
+			width: (100%)
+			display: block
+		
+	&__a
+		margin: auto
+		display: block
+		border-bottom: none
+		position: relative
+		border-radius: 50%
+		+link-color ($color_visited: none, $children: ".teaser__h")
+		+min-screen($mq_m+1)
+			overflow: hidden
+			width: $teaser_dim
+		+max-screen($mq_m)
+			
+
+	&__img
+		display: block
+		border-radius: 50%
+		+max-screen($mq_m)
+			margin: auto
+			margin-bottom: 10px
+
+	&__legend
+		text-transform: uppercase
+		position: relative
+		text-align: center
+		+min-screen($mq_m+1)
+			color: #fff
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
+		+max-screen($mq_m)
+			width: 70%
+			margin: auto
+
+
+		&:before
+			content: ''
+			display: block
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
+			background: #000
+			+opacity(0)
+			border-radius: 50%
+			+transition-property(opacity)
+			+transition-duration($animation-time)
+
+		&:after
+			content: ''
+			display: block
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			left: 0
+			border: 0 solid $color_imp
+			border-radius: 50%
+			+transition-property(border-width)
+			+transition-duration($animation-time)
+
+	&__a:hover &__legend:after
+		+min-screen($mq_m+1)
+			border-width: 8px
+		
+	&__a:hover &__legend:before
+		+min-screen($mq_m+1)
+			+opacity(.8)
+
+	&__h
+		position: relative
+		z-index: 2
+		margin: auto
+		+min-screen($mq_m+1)
+			width: 80%
+			margin-top: 55px
+			+opacity(0)
+			top: -20px
+			+transition-property(opacity, top)
+			+transition-duration($animation-time)
+		+max-screen($mq_m)
+			display: inline
+			border-bottom-width: 1px
+			border-bottom-style: solid
+
+	&__a:hover &__h
+		+min-screen($mq_m+1)
+			+opacity(1)
+			top: 0
+		
+
+	&__act
+		position: absolute
+		right: 0
+		left: 0
+		text-align: center
+		z-index: 2
+		text-transform: none
+		+opacity(0)
+		bottom: 10px
+		+transition-property(opacity, bottom)
+		+transition-duration($animation-time)
+		+max-screen($mq_m)
+			display: none
+
+	&__a:hover &__act
+		+opacity(1)
+		bottom: 30px
+
+	&__act-txt
+		color: $main_color_dark
+		border-bottom-width: 1px
+		border-bottom-style: solid
+
+
+/* teasers
+/* ---------------------------------------END--- */
 
